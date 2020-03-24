@@ -22,10 +22,10 @@ fetch("/get-data.json", {
     headers: {
         'Content-Type': 'application/json',
       }}).then(response => response.json()).then(data => {
-console.log(data);
+console.log(data.length);
 
 
-    data.data
+    data.places
         .forEach(place => {
 // create the popup
 var popup = new mapboxgl.Popup({ offset: 25 }).setText(
