@@ -17,32 +17,6 @@ if(count>=10){
     }
     return "gray";
 }
-fetch("/get-data.json", {
-    method: "GET",
-    headers: {
-        'Content-Type': 'application/json',
-      }}).then(response => response.json()).then(data => {
-console.log(data);
-
-
-    data.data
-        .forEach(place => {
-// create the popup
-var popup = new mapboxgl.Popup({ offset: 25 }).setText(
-    'Infected :'+place.infected +" - "+'Dead :'+place.dead +" - "+'Sick :'+place.sick
-       );
-            var marker = new mapboxgl.Marker({
-                color:getColorFromCount(place.infected)
-            })
-                .setLngLat([place.longitude, place.latitude])
-                .setPopup(popup) // sets a popup on this marker
-
-                .addTo(map);
-
-
-
-        });
-})
 
 function readTextFile(file, callback) {
     var rawFile = new XMLHttpRequest();
@@ -57,7 +31,7 @@ function readTextFile(file, callback) {
 }
 
 //usage:
-readTextFile("/get-places.json", function(text){
-    var data = JSON.parse(text);
+readTextFile("/get-data.json", function(data){
+    //var data = JSON.parse(text);
     console.log(data);
 });
